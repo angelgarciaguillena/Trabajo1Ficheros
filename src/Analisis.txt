@@ -1,0 +1,33 @@
+class Paciente implements Comparable<Paciente>
+	- String nombre
+	- String direccion
+	- int telefono
+	- boolean baja
+	--------------------------------
+	public Paciente(String nombre, String direccion, int telefono, boolean baja)
+	--------------------------------
+	+ getNombre()
+	+ getDireccion()
+	+ getTelefono()
+	+ isBaja()
+	--------------------------------
+	+ setDireccion()
+	+ setTelefono()
+	+ setBaja()
+	--------------------------------
+	@Override
+	+ public int compareTo()
+	+ public int hashCode()
+	+ public boolean equals()
+	+ public String toString()
+	
+class PacienteCRUD
+	+ public static boolean añadirPaciente()
+	+ public static Paciente buscarPaciente()
+	+ public static void listarPacientes()
+	+ public static boolean modificarPaciente()
+	+ public static boolean eliminarPaciente()
+	
+class GestionFichero
+	+ public static void leerFichero()
+	+ public static void escribirFichero()
