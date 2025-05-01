@@ -56,6 +56,7 @@ public class PacienteCRUD {
 	public static void mostrarPaciente() {
 		for(Paciente paciente : pacientes) {
 			System.out.println(paciente);
+			System.out.println("—---------------------------------------------------");
 		}
 	}
 	
