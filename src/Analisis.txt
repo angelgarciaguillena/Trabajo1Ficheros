@@ -12,7 +12,6 @@ class Paciente implements Comparable<Paciente>
 	+ isBaja()
 	--------------------------------
 	+ setDireccion()
-	+ setTelefono()
 	+ setBaja()
 	--------------------------------
 	@Override
@@ -22,11 +21,13 @@ class Paciente implements Comparable<Paciente>
 	+ public String toString()
 	
 class PacienteCRUD
-	+ public static boolean añadirPaciente()
-	+ public static Paciente buscarPaciente()
-	+ public static void listarPacientes()
+	- private static Set<Paciente> pacientes
+	--------------------------------
+	+ public static boolean añadirPaciente(Paciente paciente)
+	+ public static Paciente buscarPaciente(String nombre, int telefono)
+	+ public static void mostrarPaciente()
 	+ public static boolean modificarPaciente()
-	+ public static boolean eliminarPaciente()
+	+ public static boolean eliminarPaciente(Paciente paciente)
 	
 class GestionFichero
 	+ public static void leerFichero()
