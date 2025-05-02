@@ -173,10 +173,12 @@ public class PrincipalPaciente {
 				}
 				
 				/*Llamamos a la funcion para eliminar al paciente*/
-				if(PacienteCRUD.eliminarPaciente(paciente)) {
-					System.out.println("Se ha eliminado al paciente");
-				} else {
-					System.out.println("No se ha podido eliminar al paciente");
+				if(paciente != null) {
+					if(PacienteCRUD.eliminarPaciente(paciente)) {
+						System.out.println("Se ha eliminado al paciente");
+					} else {
+						System.out.println("No se ha podido eliminar al paciente");
+					}
 				}
 			}
 			
