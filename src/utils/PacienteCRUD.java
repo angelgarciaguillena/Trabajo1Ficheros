@@ -16,7 +16,7 @@ public class PacienteCRUD {
 	/**
 	 * Creamos un conjunto para almacenar los pacientes
 	 */
-	private static Set<Paciente> pacientes = new HashSet<Paciente>();
+	public static Set<Paciente> pacientes = new HashSet<Paciente>();
 	
 	/**
 	 * Funcion que se encarga de añadir a un paciente al conjunto y devuelve true si se ha añadido

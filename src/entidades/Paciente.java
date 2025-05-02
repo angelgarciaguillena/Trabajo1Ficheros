@@ -24,12 +24,33 @@ public class Paciente implements Comparable<Paciente>{
 	/**
 	 * Atributo que almacena el telefono del paciente
 	 */
-	private int telefono = 000000000;
+	private int telefono;
 	
 	/**
 	 * Atributo que almacena si el paciente esta de baja o no
 	 */
 	private boolean baja = false;
+	
+	/**
+	 * Constructor de la clase Paciente que inicializa los atributos comprobando si sus valores
+	 * son validos antes de asignarlos
+	 * 
+	 * @param nombre Nombre del paciente
+	 * @param telefono Telefono del paciente
+	 * @throws TelefonoIncorrectoExcepcion Excepcion que indica si el telefono se ha introducido de forma incorrecta
+	 */
+	public Paciente(String nombre, int telefono) throws TelefonoIncorrectoExcepcion {
+		
+		if(nombre != null && !nombre.isBlank()) {
+			this.nombre = nombre;
+		}
+		
+		if(telefono <= 999999999 && telefono > 99999999) {
+			this.telefono = telefono;
+		} else {
+			throw new TelefonoIncorrectoExcepcion();
+		}
+	}
 	
 	/**
 	 * Constructor que inicializa los atributos de la clase Paciente comprobando

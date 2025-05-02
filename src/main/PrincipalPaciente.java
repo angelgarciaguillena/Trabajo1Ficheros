@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import entidades.Paciente;
 import excepciones.TelefonoIncorrectoExcepcion;
+import utils.GestionFicheros;
 import utils.PacienteCRUD;
 
 public class PrincipalPaciente {
@@ -22,8 +23,19 @@ public class PrincipalPaciente {
 		/*Creamos una variable para almacenar el telefono del paciente*/
 		int telefono;
 		
+		/*Creamos una variable para almacenar la direccion del paciente*/
+		String direccion;
+		
 		/*Creamos un paciente*/
 		Paciente paciente = null;
+		
+		/*LLamamos a la funcion para cargar a los pacientes que teniamos registrados
+		 * en el fichero y si no se puede realizar se le notifica al usuario*/
+		if(GestionFicheros.leerFichero()) {
+			System.out.println("Se han cargado a los pacientes");
+		} else {
+			System.out.println("No se ha podido cargar a los pacientes");
+		}
 		
 		/*Creamos un bucle do while para que se repita el programa mientras que 
 		 * el usuario no introduzca 0*/
@@ -99,7 +111,43 @@ public class PrincipalPaciente {
 				
 				/*Si no se ha encontrado al paciente notificamos al usuario*/
 				if(paciente != null) {
-					System.out.println(paciente);
+					
+					/*Pedimos al usuario que introduzca el parametro que se quiere modificar del paciente*/
+					System.out.println("1. Direccion");
+					System.out.println("2. Baja");
+					System.out.println("Introduce el parametro que se quiere modificar del paciente");
+					
+					/*Leemos la opcion del usuario*/
+					opcion = sc.nextInt();
+					sc.nextLine();
+					
+					/*Si la opcion que ha introducido el usuario es 1 modificamos la direccion del paciente*/
+					if(opcion == 1) {
+						
+						/*Pedimos al usuario que introduzca la nueva direccion del paciente*/
+						System.out.println("Introduce la nueva direccion del paciente");
+						
+						/*Leemos la nueva direccion del paciente*/
+						direccion = sc.nextLine();
+						
+						/*Modificamos la direccion del paciente y si no se ha podido lanzamos un mensaje al usuario*/
+						if(PacienteCRUD.modificarDireccionPaciente(nombre, telefono, direccion)) {
+							System.out.println("Se ha modificado la direccion del paciente");
+						} else {
+							System.out.println("No se ha podido modificar la direccion del paciente");
+						}
+					
+					/*Si la opcion del usuario es 2 modificamos la baja del paciente*/
+					} else if(opcion == 2) {
+						
+						/*Modificamos la baja del paciente y si no se ha podido modificar se le notifica al usuario*/
+						if(PacienteCRUD.modificarBajaPaciente(nombre, telefono)) {
+							System.out.println("Se ha modificado la baja del paciente");
+						} else {
+							System.out.println("No se ha podido modificar la baja del paciente");
+						}
+					}
+					
 				} else {
 					System.out.println("No se ha encontrado al paciente");
 				}
@@ -108,8 +156,18 @@ public class PrincipalPaciente {
 			/*Si la opcion es 5 eliminamos a un paciente*/
 			case 5 -> {
 				
-				/*LLamamosa a la funcion para pedir al usuario los datos del paciente*/
-				paciente = pedirPaciente();
+				/*LLamamosa a la funcion para pedir al usuario el nombre del paciente*/
+				nombre = pedirNombre();
+				
+				/*Llamamos a la funcion para pedir al usuario el telefono del paciente*/
+				telefono = pedirTelefono();
+				
+				/*Creamos un objeto con los datos del paciente*/
+				try {
+					paciente = new Paciente(nombre, telefono);
+				} catch (TelefonoIncorrectoExcepcion e) {
+					System.out.println(e.getMessage());
+				}
 				
 				/*Llamamos a la funcion para eliminar al paciente*/
 				if(PacienteCRUD.eliminarPaciente(paciente)) {
@@ -122,6 +180,12 @@ public class PrincipalPaciente {
 			/*Si la opcion es 6 guardamos a los pacientes en el fichero*/
 			case 6 -> {
 				
+				/*LLamamos a la funcion para guardar a los nuevos pacientes en el fichero*/
+				if(GestionFicheros.escribirFichero()) {
+					System.out.println("Se han guardado a los pacientes");
+				} else {
+					System.out.println("No se ha podido guardar a los pacientes");
+				}
 			}
 			
 			/*Si la opcion es 0 se informara al usuario de que ha salido del programa*/
@@ -220,14 +284,27 @@ public class PrincipalPaciente {
 	private static int pedirTelefono() {
 		
 		/*Creamos una variable para almacenar el telefono del paciente*/
-		int telefono;
+		int telefono = 0;
 		
-		/*Pedimos al usuario que introduzca el telefono del paciente*/
-		System.out.println("Introduce el telefono del paciente");
+		/*Creamos una variable para almacenar si se ha introducido correcto el numero*/
+		boolean correcto = false;
 		
-		/*Leemos el telefono del paciente*/
-		telefono = sc.nextInt();
-		sc.nextLine();
+		do {
+			try {
+				/*Pedimos al usuario que introduzca el telefono del paciente*/
+				System.out.println("Introduce el telefono del paciente");
+				
+				/*Leemos el telefono del paciente*/
+				telefono = sc.nextInt();
+				
+				assert (telefono <= 999999999 && telefono > 99999999) : "Error: El telefono introducido no tiene 9 digitos";
+				correcto = true;
+			} catch (AssertionError e) {
+				System.out.println(e.getMessage());
+			} finally {
+				sc.nextLine();
+			}
+		} while(!correcto);
 		
 		/*Devolvemos el telefono del paciente*/
 		return telefono;
