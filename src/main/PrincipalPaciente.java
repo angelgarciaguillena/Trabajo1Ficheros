@@ -42,7 +42,7 @@ public class PrincipalPaciente {
 		do {
 			
 			/*LLamamos a la funcion para mostrar el menu*/
-			menu();
+			menuPrincipal();
 			
 			/*Pedimos al usuario que introduzca una opcion*/
 			System.out.println("Introduce una opcion");
@@ -214,8 +214,8 @@ public class PrincipalPaciente {
 		sc.close();
 	}
 	
-	public static void menu() {
-		/*Mostramos el menu al usuario*/
+	public static void menuPrincipal() {
+		/*Mostramos el menu de gestion de pacientes al usuario*/
 		System.out.println("\n" + "Menu:");
 		System.out.println("1. Añadir paciente");
 		System.out.println("2. Buscar paciente");
