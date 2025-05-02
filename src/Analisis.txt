@@ -1,34 +1,38 @@
 class Paciente implements Comparable<Paciente>
-	- String nombre
-	- String direccion
-	- int telefono
-	- boolean baja
+	- private String nombre 
+	- private String direccion
+	- private int telefono
+	- private boolean baja
 	--------------------------------
-	public Paciente(String nombre, String direccion, int telefono, boolean baja)
+	public Paciente(String nombre, int telefono) throws TelefonoIncorrectoExcepcion
+	public Paciente(String nombre, String direccion, int telefono, boolean baja) throws TelefonoIncorrectoExcepcion
 	--------------------------------
 	+ getNombre()
 	+ getDireccion()
 	+ getTelefono()
 	+ isBaja()
 	--------------------------------
-	+ setDireccion()
+	+ setDireccion(String direccion)
 	+ setBaja()
 	--------------------------------
-	@Override
-	+ public int compareTo()
+	@Override:
+	+ public int compareTo(Paciente o)
 	+ public int hashCode()
-	+ public boolean equals()
+	+ public boolean equals(Object obj)
 	+ public String toString()
 	
+class GestionFichero
+	- public static final String FICHERO
+	--------------------------------
+	+ public static boolean leerFichero()
+	+ public static boolean escribirFichero()
+	
 class PacienteCRUD
-	- private static Set<Paciente> pacientes
+	- public static Set<Paciente> pacientes
 	--------------------------------
 	+ public static boolean añadirPaciente(Paciente paciente)
 	+ public static Paciente buscarPaciente(String nombre, int telefono)
 	+ public static void mostrarPaciente()
-	+ public static boolean modificarPaciente()
+	+ public static boolean modificarDireccionPaciente(String nombre, int telefono, String direccion)
+	+ public static boolean modificarBajaPaciente(String nombre, int telefono)	
 	+ public static boolean eliminarPaciente(Paciente paciente)
-	
-class GestionFichero
-	+ public static void leerFichero()
-	+ public static void escribirFichero()

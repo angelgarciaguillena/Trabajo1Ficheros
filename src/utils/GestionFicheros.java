@@ -10,7 +10,12 @@ import java.io.IOException;
 import entidades.Paciente;
 import excepciones.TelefonoIncorrectoExcepcion;
 
-
+/**
+ * Clase encargada de la gestion del fichero donde se guardan los datos de los 
+ * pacientes
+ * 
+ * @author Angel
+ */
 public class GestionFicheros {
 	
 	/**
@@ -18,32 +23,55 @@ public class GestionFicheros {
 	 */
 	public static final String FICHERO = "src\\ficheros\\Pacientes.txt";
 	
+	/**
+	 * Funcion encargada de leer la informacion de los pacientes que esta en el fichero, la carga en el programa
+	 * para trabajar con ella y devuelve true si la ha podido leer o false si no la ha podido leer
+	 * 
+	 * @return Devuelve true si lo ha leido o false si no lo ha podido leer
+	 */
 	public static boolean leerFichero() {
-		boolean realizado = false;
-		String pacientes[];
+		
+		String datos[];
 		String linea;
+		boolean realizado = false;
+		
 		try(BufferedReader br = new BufferedReader(new FileReader(FICHERO))) {
 			
 			linea = br.readLine();
 			
 			while(linea != null) {
-				pacientes = linea.split(";");
-				linea = br.readLine();
+				
+				datos = linea.split(";");
 				
 				try {
-					Paciente paciente = new Paciente(pacientes[0], pacientes[1], Integer.parseInt(pacientes[2]), pacientes[3]);
+					
+					Paciente paciente = new Paciente(datos[0], datos[1], Integer.parseInt(datos[2]), datos[3]);
+					
 					PacienteCRUD.pacientes.add(paciente);
-				} catch (NumberFormatException e) {
-					System.out.println();
+					
 				} catch (TelefonoIncorrectoExcepcion e) {
-					System.out.println(e.getMessage());;
+					System.out.println(e.getMessage());
 				}
+				
+				linea = br.readLine();
 			}
 			
 			realizado = true;
+			
 			br.close();
+			
 		} catch (FileNotFoundException e) {
-			System.out.println("No se ha encontrado el fichero " + e.getMessage());
+			
+			try {
+				
+				FileWriter fw = new FileWriter(FICHERO);
+				
+				fw.close();
+				
+			} catch (IOException e1) {
+				System.out.println("Error al crear el fichero: " + e1.getMessage());
+			}
+			
 		} catch (IOException e) {
 			System.out.println("No se ha podido leer el fichero " + e.getMessage());
 		}
@@ -51,6 +79,12 @@ public class GestionFicheros {
 		return realizado;
 	}
 	
+	/**
+	 * Funcion encargada de escribir la informacion de los pacientes en el fichero y devuelve 
+	 * true si lo ha realizado o false si no lo ha realizado
+	 * 
+	 * @return Devuelve true si lo ha realizado o false si no
+	 */
 	public static boolean escribirFichero() {
 		
 		boolean escrito = false;
@@ -58,11 +92,16 @@ public class GestionFicheros {
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(FICHERO))) {
 			
 			for(Paciente paciente : PacienteCRUD.pacientes) {
+				
 				bw.write(paciente.getNombre() + ";" + paciente.getDireccion() + ";" + paciente.getTelefono() + ";" + paciente.isBaja());
+				
 				bw.newLine();
 			}
+			
 			escrito = true;
+			
 			bw.flush();
+			
 			bw.close();
 			
 		} catch (IOException e) {

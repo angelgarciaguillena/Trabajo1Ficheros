@@ -61,6 +61,7 @@ public class PrincipalPaciente {
 				/*LLamamosa a la funcion para pedir al usuario los datos del paciente*/
 				paciente = pedirPaciente();
 				
+				/*Si el paciente no es nulo*/
 				if(paciente != null) {
 					/*Llamamos a la funcion para añadir al paciente*/
 					if(PacienteCRUD.añadirPaciente(paciente)) {
@@ -97,6 +98,7 @@ public class PrincipalPaciente {
 			case 3 -> {
 				
 				/*Llamamos a la funcion para mostrar a los pacientes*/
+				System.out.println("\n" + "Pacientes:" + "\n");
 				PacienteCRUD.mostrarPaciente();
 			}
 			
@@ -172,8 +174,9 @@ public class PrincipalPaciente {
 					System.out.println(e.getMessage());
 				}
 				
-				/*Llamamos a la funcion para eliminar al paciente*/
+				/*Si el paciente no es nulo*/
 				if(paciente != null) {
+					/*Llamamos a la funcion para eliminar al paciente y notificamos el resultado al usuario*/
 					if(PacienteCRUD.eliminarPaciente(paciente)) {
 						System.out.println("Se ha eliminado al paciente");
 					} else {
