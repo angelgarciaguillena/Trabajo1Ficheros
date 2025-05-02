@@ -41,5 +41,6 @@ class PacienteCRUD
 	
 	
 class TelefonoIncorrectoExcepcion extends Exception
+	@Override;
 	+ public String toString()
 	+ public String getMessage()
