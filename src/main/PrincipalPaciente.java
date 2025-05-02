@@ -289,25 +289,12 @@ public class PrincipalPaciente {
 		/*Creamos una variable para almacenar el telefono del paciente*/
 		int telefono = 0;
 		
-		/*Creamos una variable para almacenar si se ha introducido correcto el numero*/
-		boolean correcto = false;
-		
-//		do {
-//			try {
-				/*Pedimos al usuario que introduzca el telefono del paciente*/
-				System.out.println("Introduce el telefono del paciente");
+		/*Pedimos al usuario que introduzca el telefono del paciente*/
+		System.out.println("Introduce el telefono del paciente");
 				
-				/*Leemos el telefono del paciente*/
-				telefono = sc.nextInt();
-				
-//				assert (telefono <= 999999999 && telefono > 99999999) : "Error: El telefono introducido no tiene 9 digitos";
-//				correcto = true;
-//			} catch (AssertionError e) {
-//				System.out.println(e.getMessage());
-//			} finally {
-				sc.nextLine();
-//			}
-//		} while(!correcto);
+		/*Leemos el telefono del paciente*/
+		telefono = sc.nextInt();
+		sc.nextLine();
 		
 		/*Devolvemos el telefono del paciente*/
 		return telefono;
