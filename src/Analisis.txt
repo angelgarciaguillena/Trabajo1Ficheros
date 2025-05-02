@@ -23,14 +23,14 @@ class Paciente implements Comparable<Paciente>
 	
 	
 class GestionFichero
-	- public static final String FICHERO
+	+ public static final String FICHERO
 	--------------------------------
 	+ public static boolean leerFichero()
 	+ public static boolean escribirFichero()
 	
 	
 class PacienteCRUD
-	- public static Set<Paciente> pacientes
+	+ public static Set<Paciente> pacientes
 	--------------------------------
 	+ public static boolean añadirPaciente(Paciente paciente)
 	+ public static Paciente buscarPaciente(String nombre, int telefono)
