@@ -70,7 +70,6 @@ public class PrincipalPaciente {
 						System.out.println("No se ha podido añadir al paciente");
 					}
 				}
-				
 			}
 			
 			/*Si la opcion es 2 buscamos a un paciente*/
