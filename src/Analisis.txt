@@ -39,6 +39,7 @@ class PacienteCRUD
 	+ public static boolean modificarBajaPaciente(String nombre, int telefono)	
 	+ public static boolean eliminarPaciente(Paciente paciente)
 	
+	
 class TelefonoIncorrectoExcepcion extends Exception
 	+ public String toString()
 	+ public String getMessage()
