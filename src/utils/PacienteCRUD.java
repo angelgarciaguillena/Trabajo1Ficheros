@@ -1,7 +1,7 @@
 package utils;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import entidades.Paciente;
 
@@ -16,7 +16,7 @@ public class PacienteCRUD {
 	/**
 	 * Creamos un conjunto para almacenar los pacientes
 	 */
-	public static Set<Paciente> pacientes = new HashSet<Paciente>();
+	public static Set<Paciente> pacientes = new TreeSet<Paciente>();
 	
 	/**
 	 * Funcion que se encarga de añadir a un paciente al conjunto y devuelve true si se ha añadido

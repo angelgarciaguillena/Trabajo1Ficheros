@@ -117,9 +117,10 @@ public class PrincipalPaciente {
 				/*Si no se ha encontrado al paciente notificamos al usuario*/
 				if(paciente != null) {
 					
+					/*LLamamos a la funcion para mostrar el menu con las opciones para modificar*/
+					menuModificar();
+					
 					/*Pedimos al usuario que introduzca el parametro que se quiere modificar del paciente*/
-					System.out.println("1. Direccion");
-					System.out.println("2. Baja");
 					System.out.println("Introduce el parametro que se quiere modificar del paciente");
 					
 					/*Leemos la opcion del usuario*/
@@ -223,6 +224,13 @@ public class PrincipalPaciente {
 		System.out.println("5. Eliminar paciente");
 		System.out.println("6. Guardar pacientes");
 		System.out.println("0. Salir");
+	}
+	
+	public static void menuModificar() {
+		/*Mostramos el menu de modificacion al usuario*/
+		System.out.println("\n" + "Menu:");
+		System.out.println("1. Direccion");
+		System.out.println("2. Baja");
 	}
 	
 	private static Paciente pedirPaciente() {
