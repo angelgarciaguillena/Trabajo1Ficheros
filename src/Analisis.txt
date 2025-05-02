@@ -21,11 +21,13 @@ class Paciente implements Comparable<Paciente>
 	+ public boolean equals(Object obj)
 	+ public String toString()
 	
+	
 class GestionFichero
 	- public static final String FICHERO
 	--------------------------------
 	+ public static boolean leerFichero()
 	+ public static boolean escribirFichero()
+	
 	
 class PacienteCRUD
 	- public static Set<Paciente> pacientes
@@ -36,3 +38,7 @@ class PacienteCRUD
 	+ public static boolean modificarDireccionPaciente(String nombre, int telefono, String direccion)
 	+ public static boolean modificarBajaPaciente(String nombre, int telefono)	
 	+ public static boolean eliminarPaciente(Paciente paciente)
+	
+class TelefonoIncorrectoExcepcion extends Exception
+	+ public String toString()
+	+ public String getMessage()
