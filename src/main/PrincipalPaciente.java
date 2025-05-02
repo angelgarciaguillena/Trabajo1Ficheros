@@ -61,12 +61,15 @@ public class PrincipalPaciente {
 				/*LLamamosa a la funcion para pedir al usuario los datos del paciente*/
 				paciente = pedirPaciente();
 				
-				/*Llamamos a la funcion para añadir al paciente*/
-				if(PacienteCRUD.añadirPaciente(paciente)) {
-					System.out.println("El paciente se ha añadido");
-				} else {
-					System.out.println("No se ha podido añadir al paciente");
+				if(paciente != null) {
+					/*Llamamos a la funcion para añadir al paciente*/
+					if(PacienteCRUD.añadirPaciente(paciente)) {
+						System.out.println("El paciente se ha añadido");
+					} else {
+						System.out.println("No se ha podido añadir al paciente");
+					}
 				}
+				
 			}
 			
 			/*Si la opcion es 2 buscamos a un paciente*/
@@ -289,22 +292,22 @@ public class PrincipalPaciente {
 		/*Creamos una variable para almacenar si se ha introducido correcto el numero*/
 		boolean correcto = false;
 		
-		do {
-			try {
+//		do {
+//			try {
 				/*Pedimos al usuario que introduzca el telefono del paciente*/
 				System.out.println("Introduce el telefono del paciente");
 				
 				/*Leemos el telefono del paciente*/
 				telefono = sc.nextInt();
 				
-				assert (telefono <= 999999999 && telefono > 99999999) : "Error: El telefono introducido no tiene 9 digitos";
-				correcto = true;
-			} catch (AssertionError e) {
-				System.out.println(e.getMessage());
-			} finally {
+//				assert (telefono <= 999999999 && telefono > 99999999) : "Error: El telefono introducido no tiene 9 digitos";
+//				correcto = true;
+//			} catch (AssertionError e) {
+//				System.out.println(e.getMessage());
+//			} finally {
 				sc.nextLine();
-			}
-		} while(!correcto);
+//			}
+//		} while(!correcto);
 		
 		/*Devolvemos el telefono del paciente*/
 		return telefono;
